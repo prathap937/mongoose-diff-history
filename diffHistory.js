@@ -56,7 +56,8 @@ function saveDiffObject(currentObject, original, updated, opts, queryObject) {
     const collectionId = currentObject._id;
     const collectionName =
         currentObject.constructor.modelName || queryObject.model.modelName;
-
+    const reference = opts.reference ? { reference: currentObject[opts.reference] } : {};
+    
     return History.findOne({ collectionId, collectionName })
         .sort('-version')
         .then(lastHistory => {
@@ -66,6 +67,7 @@ function saveDiffObject(currentObject, original, updated, opts, queryObject) {
                 diff,
                 user,
                 reason,
+                ...reference,
                 version: lastHistory ? lastHistory.version + 1 : 0
             });
             if (session) {

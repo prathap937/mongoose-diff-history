@@ -5,6 +5,7 @@ const historySchema = new Schema(
     {
         collectionName: String,
         collectionId: Schema.Types.ObjectId,
+        reference: Schema.Types.ObjectId,
         diff: {},
         user: {},
         reason: String,
