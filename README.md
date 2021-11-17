@@ -32,6 +32,7 @@ diff Collection schema:
 _id : mongo id of the diff object
 collectionName: Name of the collection for which diff is saved
 collectionId : Mongo Id of the collection being modified
+reference : any collection id can be passed to make a reference
 diff: diff object
 user: User who modified
 reason: Why the collection is modified
@@ -80,14 +81,14 @@ You can get all the histories created for an object using following method:
 const diffHistory = require('mongoose-diff-history/diffHistory');
 const expandableFields = ['abc', 'def'];
 
-diffHistory.getHistories('modelName', ObjectId, expandableFields, function (
+diffHistory.getHistories(query, expandableFields, function (
     err,
     histories
 ) {});
 
 // or, as a promise
 diffHistory
-    .getHistories('modelName', ObjectId, expandableFields)
+    .getHistories(query, expandableFields)
     .then(histories => {})
     .catch(console.error);
 ```
