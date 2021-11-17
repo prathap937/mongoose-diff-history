@@ -189,7 +189,7 @@ const getDiffs = (modelName, id, opts, cb) => {
         });
 };
 
-const getHistories = (modelName, id, expandableFields, cb) => {
+const getHistories = (query, expandableFields, cb) => {
     expandableFields = expandableFields || [];
     if (typeof expandableFields === 'function') {
         cb = expandableFields;
@@ -198,7 +198,7 @@ const getHistories = (modelName, id, expandableFields, cb) => {
 
     const histories = [];
 
-    return History.find({ collectionName: modelName, collectionId: id })
+    return History.find({ ...query })
         .lean()
         .cursor()
         .eachAsync(history => {
