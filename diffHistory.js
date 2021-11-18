@@ -223,7 +223,10 @@ const getHistories = (query, expandableFields, cb) => {
                 changedBy: history.user,
                 changedAt: history.createdAt,
                 updatedAt: history.updatedAt,
+                collectionName: history.collectionName,
                 reason: history.reason,
+                diff: history.diff,
+                reference: history.reference,
                 comment: comment
             });
         })
