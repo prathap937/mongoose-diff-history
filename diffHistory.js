@@ -224,6 +224,7 @@ const getHistories = (query, expandableFields, cb) => {
                 changedAt: history.createdAt,
                 updatedAt: history.updatedAt,
                 collectionName: history.collectionName,
+                collectionId: history.collectionId,
                 reason: history.reason,
                 diff: history.diff,
                 reference: history.reference,
