@@ -33,7 +33,7 @@ function checkRequired(opts, queryObject, updatedObject) {
 }
 
 function saveDiffObject(currentObject, original, updated, opts, queryObject) {
-    const { __user: user, __reason: reason, __session: session } =
+    const { __reason: reason, __session: session } =
         (queryObject && queryObject.options) || currentObject;
 
     let diff = diffPatcher.diff(
@@ -57,6 +57,7 @@ function saveDiffObject(currentObject, original, updated, opts, queryObject) {
     const collectionName =
         currentObject.constructor.modelName || queryObject.model.modelName;
     const reference = opts.reference ? { reference: currentObject[opts.reference] } : {};
+    const user = opts.user ? currentObject[opts.user] : null;
     
     return History.findOne({ collectionId, collectionName })
         .sort('-version')
